@@ -6,3 +6,7 @@ Set up custom icons for your macOS Applications without fear that an auto-update
 
 * Put `bin/seticons` somewhere in your `$PATH` and make it executable.
 * Put `config/custom-icons.yaml` in `$HOME/.config/custom-icons.yaml`
+
+Look over the `custom-icons.yaml` file for examples.
+
+© 2016 Matt Petty matt@kizmeta.com
