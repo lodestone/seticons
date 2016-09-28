@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# seticons
+# TODO: Make this handle urls as well as file paths for the icon location
+# TODO: Write a test that ensures it is working somewhat correctly
+# TODO: Colorize/Prettify output / Make it have some output
+# TODO: Expand to handle other file types besides Applications
+# TODO: Make `seticons edit` open the config file for editing
+require "yaml"
+
+config_file = ENV['HOME'] + "/.config/custom-icons.yaml"
+
+if File.exists?(config_file)
+  yaml = YAML.load_file(config_file)
+else
+  # Write out the default file and open it for editing
+  File.open(config_file, "w"){|file| file << "Applications:\n  -\n    app: APPNAME\n    icon: ICONPATH"}
+  %x[$EDITOR #{config_file}]
+end
+
+yaml["Applications"].each do |application|
+  app = "/Applications/#{application['app']}.app"
+  icon = application["icon"]
+  puts %x[sudo rm -rf #{app}/Icon\r]
+  puts %x[sudo sips -i #{icon} > /dev/null]
+  puts %x[sudo DeRez -only icns #{icon} > /tmp/icns.rsrc]
+  puts %x[sudo Rez -append /tmp/icns.rsrc -o #{app}/Icon\r]
+  puts %x[sudo SetFile -a C #{app}]
+  puts %x[sudo SetFile -a V #{app}/Icon\r]
+end
+
+# # Original Code
+# replace_icon(){
+#     droplet=$1
+#     icon=$2
+#     if [[ $icon =~ ^https?:// ]]; then
+#         curl -sLo /tmp/icon $icon
+#         icon=/tmp/icon
+#     fi
+#     rm -rf $droplet$'/Icon\r'
+#     sips -i $icon >/dev/null
+#     DeRez -only icns $icon > /tmp/icns.rsrc
+#     Rez -append /tmp/icns.rsrc -o $droplet$'/Icon\r'
+#     SetFile -a C $droplet
+#     SetFile -a V $droplet$'/Icon\r'
+# }

@@ -1,0 +1,25 @@
+Applications:
+  -
+    app: Taskpaper
+    icon: /Users/z/=/Media/Icons/Taskpaper-Checkmark-Icon.png
+  -
+    app: Typora
+    icon: /Users/z/=/Media/Icons/Typora-Icon.png
+  -
+    app: Ulysses
+    icon: /Users/z/=/Media/Icons/Ulysses-III.png
+  -
+    app: Vivaldi
+    icon: /Users/z/=/Media/Icons/Vivalidi2.png
+  -
+    app: Atom
+    icon: /Users/z/=/Media/Icons/Atom/Atom\ Icon\ 7.icns
+  -
+    app: Atom\ Beta
+    icon: /Users/z/=/Media/Icons/Atom/Atom\ Icon\ 4.png
+  -
+    app: Amazon\ Music
+    icon: /Users/z/=/Media/Icons/Amazon-Music-Replacement.png
+  -
+    app: nvALT
+    icon: /Users/z/=/Media/Icons/nvALT.icns
